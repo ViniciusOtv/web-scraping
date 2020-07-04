@@ -9,7 +9,9 @@ import json
 import datetime
 from json import JSONEncoder
 import csv
-import db as db 
+import database as db
+import mysql.connector
+
 
 url = 'https://www.carrefour.com.br/dicas/mercado?crfint=hm|header-menu|mercado|9'
 base_url = 'https://www.carrefour.com.br'
@@ -53,4 +55,6 @@ for categories in category_name_list_items:
         links = (base_url + categories.get('href'))
     category = Category(name, links)
     f.writerow([category.name, category.link, datetime.datetime.now(), datetime.datetime.now()])
+    db.write_values(category.name, category.link, datetime.datetime.now(), datetime.datetime.now())
+    print('Inserindo dados na Base')
 driver.quit()   
