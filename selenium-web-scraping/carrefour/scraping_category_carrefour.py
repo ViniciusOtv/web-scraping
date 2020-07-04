@@ -12,7 +12,7 @@ import csv
 import database as db
 import mysql.connector
 
-
+db.delete_values_into_category()
 url = 'https://www.carrefour.com.br/dicas/mercado?crfint=hm|header-menu|mercado|9'
 base_url = 'https://www.carrefour.com.br'
 
@@ -54,7 +54,6 @@ for categories in category_name_list_items:
     else:    
         links = (base_url + categories.get('href'))
     category = Category(name, links)
-    f.writerow([category.name, category.link, datetime.datetime.now(), datetime.datetime.now()])
-    db.write_values(category.name, category.link, datetime.datetime.now(), datetime.datetime.now())
-    print('Inserindo dados na Base')
+    f.writerow([" ".join(category.name.split()), category.link, datetime.datetime.now(), datetime.datetime.now()])
+    db.write_values(" ".join(category.name.split()), category.link, datetime.datetime.now(), datetime.datetime.now())
 driver.quit()   
