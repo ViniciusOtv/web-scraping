@@ -9,7 +9,7 @@ import json
 import datetime
 from json import JSONEncoder
 import csv
-import Repository.categorydb as db
+import Repository.MySqlRepository.categorydb as db
 import mysql.connector
 
 db.delete_values_into_category()
